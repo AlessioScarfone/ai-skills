@@ -46,3 +46,5 @@ Each skill directory contains:
 
 For more information, see the [GitHub Copilot Agent Skills documentation](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills).
 
+## Other public skills
+- [humanizer](https://github.com/blader/humanizer)
