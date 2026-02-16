@@ -1,5 +1,5 @@
 ---
-name: acreate-agents-md
+name: create-agents-md
 description: Generate hierarchical AGENTS.md structures for codebases. Use when user asks to create AGENTS.md files, analyze codebase for AI agent documentation, set up AI-friendly project documentation, or generate context files for AI coding assistants. Triggers on "create AGENTS.md", "generate agents", "analyze codebase for AI", "AI documentation setup", "hierarchical agents".
 ---
 
