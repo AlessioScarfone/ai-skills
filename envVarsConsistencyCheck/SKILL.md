@@ -1,7 +1,7 @@
 ---
 name: envVarsConsistencyCheck
 title: Mandatory and Optional Environment Variables Consistency Check
-description: Validate consistency between application environment variable schema and Helm/Kubernetes configuration across multiple environments.
+description: Validate consistency between application environment variable schema and Helm/Kubernetes configuration across multiple environments, resolving real values, detecting CI/Kubernetes secrets, and identifying code-level defaults.
 tags:
   - env
   - helm
@@ -9,30 +9,30 @@ tags:
   - devops
   - validation
   - ci
-version: 1.0.0
+version: 1.3.0
 ---
 
-# SKILL.md – Mandatory and Optional Environment Variables Consistency Check
-
-## Purpose
+# Purpose
 
 Validate that all mandatory environment variables defined in the application code are correctly configured in Helm (`values.yaml`, `values-<env>.yaml`) and/or provided via CI/Kubernetes secrets.
 
-Additionally, report the presence and effective values of optional environment variables across environments.
+Additionally, report:
 
-This skill is designed to produce deterministic, structured output suitable for CI logs, Merge Requests, and technical documentation.
+- The **actual resolved values** per environment
+- Variables sourced from **CI/Kubernetes secrets**
+- **Default values defined in code**, including both schema-level defaults and runtime fallbacks
+
+This skill produces deterministic, structured output suitable for CI logs, Merge Requests, and technical documentation.
 
 ---
 
-## Scope
+# Scope
 
 This skill applies when:
 
-- The application defines environment variables in a schema file (e.g., `src/config.ts`).
-- The deployment configuration uses:
-  - `values.yaml` (default values)
-  - `values-<env>.yaml` (environment overrides)
-  - CI/Kubernetes secrets
+- Environment variables are defined in a schema file (e.g., `src/config.ts`)
+- Defaults may be defined in schema or directly in code logic (`??`, `||`, `if`)
+- Deployment uses `values.yaml`, `values-<env>.yaml`, CI/CD variables, or Kubernetes secrets
 
 Supported environments:
 
@@ -43,137 +43,125 @@ Supported environments:
 
 ---
 
-## Definitions
+# Definitions
 
 - **Mandatory variables**: Variables listed in the `required` field of the schema.
-- **Optional variables**: Variables defined in the schema but NOT listed in `required`.
-- **Default value**: A value defined in `values.yaml` and not overridden.
-- **Override value**: A value defined in `values-<env>.yaml`.
-- **Secret variable**: A variable defined via CI/CD or Kubernetes secrets.
+- **Optional variables**: Variables defined in the schema but not listed in `required`.
+- **Helm default**: Value defined in `values.yaml`.
+- **Environment override**: Value defined in `values-<env>.yaml`.
+- **Secret variable**: Variable defined in CI/CD or Kubernetes secrets.
+- **Code-level default**: Fallback defined in code (schema default, `??`, `||`, `if` logic).
+- **Resolved value**: Effective runtime value after applying resolution priority.
 
 ---
 
-## Procedure
+# Procedure
 
-### 1. Extract Variables from Code
+## 1. Extract Variables from Code
 
-1. Locate the environment schema file (e.g., `src/config.ts`).
-2. Extract:
-   - All variables listed in the `required` field → **Mandatory variables**.
-   - All other variables defined in the schema → **Optional variables**.
+1. Locate the schema file (e.g., `src/config.ts`).
+2. Extract mandatory variables from `required`.
+3. Extract optional variables from schema definitions.
 
----
+## 2. Detect Code-Level Defaults
 
-### 2. Resolve Configuration per Environment
+Identify defaults defined in:
 
-For each environment (dev, int, stg, prod):
+- **Schema default**: `z.string().default("3000")`
+- **Nullish coalescing (`??`)**: `process.env.PORT ?? "3000"`
+- **Logical OR (`||`)**: `process.env.HOST || "localhost"`
+- **Conditional fallback**:
 
-1. Start from `values.yaml` as the default configuration.
-2. Apply overrides from `values-<env>.yaml` (if present).
-3. Include variables defined as secrets (CI/Kubernetes).
+    if (!timeout) { timeout = "5000"; }
+
+Rules:
+
+- Record explicit fallback values as code-default.
+- Apply only if not provided by Helm or secret.
+
+## 3. Detect Secret Variables
+
+- Mark variable as `secret` if defined in CI/CD or Kubernetes Secret.
+- Never expose secret values.
+
+## 4. Resolve Configuration per Environment
+
+Apply resolution priority:
+
+1. Secret
+2. Environment override
+3. Helm default
+4. Code-level default
+5. Missing
 
 Resolution rules:
 
-- If defined in both default and environment-specific file → use environment value.
-- If defined only in default → mark as `value (default)`.
-- If defined as secret → mark as `(secret)`.
-- If not defined anywhere → mark as `—`.
+- Secret → `secret`
+- Environment override → actual value
+- Helm default → `value (helm-default)`
+- Code default → `value (code-default)`
+- Not defined → `—`
 
 ---
 
-### 3. Validation Rules
+# Validation Rules
 
-- Every **mandatory variable** must be present in at least one of:
-  - `values.yaml`
-  - `values-<env>.yaml`
-  - Secrets
-- If missing for a specific environment → mark as `—`.
-- Optional variables must always be included in the report, even if not defined.
-
-No assumptions should be made beyond the provided configuration files.
+- Mandatory variables must resolve via Helm, secret, or code-default.
+- Optional variables must always be included in output.
+- Do not infer defaults beyond explicit code logic.
 
 ---
 
-## Output Requirements
-
-The output MUST be:
+# Output Requirements
 
 - Deterministic
 - Strictly structured
-- Free of explanations, suggestions, or improvements
-- Limited to the elements described below
+- No commentary
+- Limited to defined tables and missing list
 
-### 1. Table – Mandatory Variables
-
-- Rows: Mandatory variables
-- Columns: dev, int, stg, prod
-- Cell values must be one of:
-  - `value`
-  - `value (default)`
-  - `(secret)`
-  - `—`
-
-Example:
-
-**Mandatory variables:**
+## Table – Mandatory Variables
 
 | Variable | dev | int | stg | prod |
 |----------|-----|-----|-----|------|
-| VAR1 | value | value | value (default) | value |
-| VAR2 | (secret) | (secret) | (secret) | (secret) |
-| VAR3 | — | — | — | — |
+| Example | value | value | value (helm-default) | value |
+| SecretVar | secret | secret | secret | secret |
+| CodeDefaultVar | 3000 (code-default) | 3000 (code-default) | 8080 | 8080 |
+| MissingVar | — | — | — | — |
 
----
-
-### 2. Table – Optional Variables
-
-- Rows: Optional variables
-- Columns: dev, int, stg, prod
-- Same cell value rules as above
-
-Example:
-
-**Optional variables:**
+## Table – Optional Variables
 
 | Variable | dev | int | stg | prod |
 |----------|-----|-----|-----|------|
-| OPT_VAR1 | value | — | value | — |
-| OPT_VAR2 | — | — | — | — |
+| OptionalExample | debug | — | info | — |
+| Timeout | 5000 (code-default) | 5000 (code-default) | 5000 (code-default) | 5000 (code-default) |
+| OptionalSecret | secret | secret | — | — |
+
+## Missing Mandatory Variables List
+
+Provide a final list of mandatory variables that resolve to `—` per environment.
+
+Example:
+
+- dev: MissingVar
+- int: MissingVar
+- stg: MissingVar
+- prod: MissingVar
 
 ---
 
-### 3. Missing Mandatory Variables List
+# Constraints
 
-Provide a final list of missing mandatory variables per environment.
-
-Example format:
-
-Missing mandatory variables:
-- dev: VAR3
-- int: VAR3
-- stg: VAR3
-- prod: VAR3
+- Do not add commentary
+- Do not suggest improvements
+- Do not expose secret values
+- Do not modify variable names
+- Use exact tokens: `secret`, `(helm-default)`, `(code-default)`, `—`
 
 ---
 
-## Constraints
+# Expected Outcome
 
-- Do NOT add commentary.
-- Do NOT suggest improvements.
-- Do NOT infer values not explicitly defined.
-- Do NOT modify variable names.
-- Use `—` exactly for missing values.
-- Use `(secret)` exactly for secret-based values.
-- Use `value (default)` exactly when the default value is used without override.
-
----
-
-## Expected Outcome
-
-This skill ensures:
-
-- Reduced manual comparison effort.
-- Structured and repeatable validation.
-- CI-ready output.
-- Standardized environment variable auditing across projects.
-
+- Accurate detection of Helm defaults and code-level defaults
+- Correct recognition of CI/Kubernetes secrets
+- Deterministic and reproducible CI-ready validation output
+- Standardized environment variable auditing across projects
