@@ -6,6 +6,7 @@ description: Generate pull request titles and descriptions from diffs and contex
 # PR Description
 
 Generate clear, structured pull request titles and descriptions from git diff, branch context, and linked issues.
+Output a single code block with all the content. Use markdown formatting for readability.
 
 ## When to Use
 
