@@ -10,6 +10,10 @@ Folder containing my personal skills (scripts, helpers and configurations) used 
 | **agent-md-refactor** | Refactor bloated AGENTS.md, CLAUDE.md, or similar agent instruction files using progressive disclosure principles. Splits monolithic files into organized, linked documentation with contradiction detection and deletion recommendations. |
 | **envVars** | Validate the coverage of required and optional environment variables between code and Helm/K8s configurations. Generates comparison tables for mandatory and optional variables across different environments (dev, int, stg, prod). |
 | **readme** | Create or update README.md by analyzing the current state of the repository. Ensures documentation is accurate, concise, and aligned with the actual codebase without inventing features. |
+| **envVarsConsistencyCheck** | Validate consistency between application environment variable schemas and Helm/Kubernetes configs across environments (dev, int, stg, prod). |
+| **humanizer** | Helpers to produce clearer, human-friendly text (utility/public skill integration). |
+| **pr-descripton** | Generate and standardize pull request descriptions and checklists (project-specific PR templates). |
+| **pr-review** | Deterministic structured code review comparing the current branch against a base branch, identifying bugs, missing tests, and improvements. |
 
 ## Structure
 - Each skill is in a subfolder with its own code and minimal documentation.
