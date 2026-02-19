@@ -19,7 +19,7 @@ Generate clear, structured pull request titles and descriptions from git diff, b
 2. **Identify scope**: Files changed, types of change (feature, fix, refactor, docs)
 3. **Check for issues**: Linked issue numbers in branch name or commits
 4. **Draft title**: Short, imperative, conventional (e.g. `feat(auth): add OAuth2 login`)
-5. **Draft description**: Summary, what changed, why, how to test, checklist
+5. **Draft description**: Summary, what changed, why
 
 ## Title Format
 
@@ -55,14 +55,6 @@ Keep under 72 characters. No period at end.
 - Fixes #123
 - Relates to #456
 
-## How to Test
-1. [Step 1]
-2. [Step 2]
-
-## Checklist
-- [ ] Tests added/updated
-- [ ] Docs updated
-- [ ] No breaking changes (or listed in description)
 ```
 
 ## What to Include
@@ -70,7 +62,6 @@ Keep under 72 characters. No period at end.
 **Always**:
 - Summary that explains intent, not just file names
 - List of meaningful changes (not every file)
-- How to test (steps or "manual: ...")
 - Related issue if any
 
 **When relevant**:
@@ -82,7 +73,6 @@ Keep under 72 characters. No period at end.
 **Avoid**:
 - Copy-pasting full diff into description
 - Vague summaries ("updated stuff")
-- Missing test instructions for non-trivial changes
 
 ## Gathering Context
 
@@ -109,6 +99,5 @@ Infer scope from changed paths (e.g. `src/auth/` → scope "auth"). Use commit m
 
 - ❌ Title that repeats ticket number only ("JIRA-123")
 - ❌ Description that is only "See commits"
-- ❌ No testing steps for behavior changes
 - ❌ Huge bullet list of every file touched
 
