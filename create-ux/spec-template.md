@@ -1,6 +1,6 @@
 ---
 project: "My Project"
-author: "Design Studio Session"
+author: "Create UX Skill"
 date: "YYYY-MM-DD"
 sections_completed: []
 status: in-progress
@@ -8,7 +8,7 @@ status: in-progress
 
 # UX Design Specification — [Project Name]
 
-> This document is built progressively through a Design Studio session.
+> This document is built progressively through a Create UX Skill session.
 > Each section is added collaboratively after discussion and approval.
 
 ---
@@ -144,7 +144,7 @@ status: in-progress
 
 ## HTML Prototype
 
-> The HTML prototype is delivered as a complete standalone file in the Design Studio session.
+> The HTML prototype is delivered as a complete standalone file in the Create UX Skill session.
 > Copy the code block from the conversation and save as `prototype-[project-name].html`.
 > Open directly in any browser — no server or dependencies required.
 

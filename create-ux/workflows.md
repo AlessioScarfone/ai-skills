@@ -27,7 +27,7 @@ When the user starts a UX design session, display the **Main Menu** and wait for
 Display this after activation or when the user asks for the menu:
 
 ```
-🎨 Design Studio — Main Menu
+🎨 Create UX Skill — Main Menu
 
 [1] New Design Project       — Start a guided design journey from scratch
 [2] Brainstorm Decisions     — Workshop a specific design challenge or choice
@@ -337,7 +337,7 @@ Which of these would you like to tackle first?
 Display this explanation:
 
 ```
-🎨 Design Studio — How it works
+🎨 Create UX Skill — How it works
 
 WORKFLOWS
   [1] New Design Project — Full guided journey: vision → decisions → components
@@ -375,7 +375,7 @@ Use this frontmatter at the start of the first section (update as sections are c
 ```yaml
 ---
 project: "[Project Name]"
-author: "[User Name if known, else 'Design Studio Session']"
+author: "[User Name if known, else 'Create UX Skill Session']"
 date: "[Current Date]"
 sections_completed:
   - vision          # add each as completed
