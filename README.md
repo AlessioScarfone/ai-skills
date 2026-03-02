@@ -1,54 +1,52 @@
 # AI Skills
 
-Folder containing my personal skills (scripts, helpers and configurations) used by my agents.
+A collection of small, focused "skills" (scripts, helpers, and configurations) designed to be loaded by agent tooling such as GitHub Copilot or similar local agent runners.
 
-## Available Skills
+## Available skills
 
-| Skill Name | Description |
-|------------|-------------|
-| **create-agents-md** | Generate hierarchical AGENTS.md structures for codebases. Creates organized, token-efficient documentation with root files and subfolder-specific instructions following JIT indexing and nearest-wins hierarchy principles. |
-| **agent-md-refactor** | Refactor bloated AGENTS.md, CLAUDE.md, or similar agent instruction files using progressive disclosure principles. Splits monolithic files into organized, linked documentation with contradiction detection and deletion recommendations. |
-| **envVars** | Validate the coverage of required and optional environment variables between code and Helm/K8s configurations. Generates comparison tables for mandatory and optional variables across different environments (dev, int, stg, prod). |
-| **readme** | Create or update README.md by analyzing the current state of the repository. Ensures documentation is accurate, concise, and aligned with the actual codebase without inventing features. |
-| **envVarsConsistencyCheck** | Validate consistency between application environment variable schemas and Helm/Kubernetes configs across environments (dev, int, stg, prod). |
-| **humanizer** | Helpers to produce clearer, human-friendly text (utility/public skill integration). |
-| **pr-descripton** | Generate and standardize pull request descriptions and checklists (project-specific PR templates). |
-| **pr-review** | Deterministic structured code review comparing the current branch against a base branch, identifying bugs, missing tests, and improvements. |
+- **agent-md-refactor** — Refactors large AGENTS.md / CLAUDE.md files into smaller, progressive-disclosure docs.
+- **create-agents-md** — Generates hierarchical AGENTS.md structures for repositories and teams.
+- **create-skill** — Scaffolding utility to create a new skill with recommended files and metadata. => [Matt Pocock Skills](https://github.com/mattpocock/skills)
+- **create-ux** — Facilitate UX design sessions with structured brainstorming, design decision workshops, specification writing, and standalone HTML/CSS prototyping.
+- **env-vars-consistency-check** — Compares application env var schemas with Helm/Kubernetes configs across environments.
+- **fastify** — Collection of Fastify-focused rules and helpers (security, plugins, testing, etc.) => from [Matteo Collina Skills](https://github.com/mcollina/skills)
+- **humanizer** — Utilities to make AI-generated text sound more natural and human. => from [humanizer](https://github.com/blader/humanizer)
+- **pr-descripton** — Templates and generators for standardized PR descriptions and checklists.
+- **pr-review** — Deterministic code-review helpers to surface regressions and missing tests.
+- **readme** — Creates or updates README.md by analyzing the repository and its files.
+- **typescript-magician** — Advanced TypeScript type utilities and rules guidance. => from [Matteo Collina Skills](https://github.com/mcollina/skills)
+- **tdd** — Test-driven development helpers (red-green-refactor loop). => from [Matt Pocock Skills](https://github.com/mattpocock/skills)
+
+Each skill lives in a subfolder and includes a `SKILL.md` that documents its behavior and configuration.
 
 ## Structure
-- Each skill is in a subfolder with its own code and minimal documentation.
 
-## How to Use These Skills
+- `SKILL.md` — Primary skill definition and usage instructions.
+- Other files — scripts, rules, or support code for the skill.
 
-### Installation Locations
+## Installation
 
-You can place skills in different locations depending on your needs:
+Choose one of the installation locations:
 
-- **Global skills (user-level):** Place in `~/.copilot/skills/` for skills shared across all your projects
-- **Project-specific skills:** Place in `.github/skills/` within your repository for project-specific skills
-- **Legacy compatibility:** `~/.claude/skills/` is also supported but `~/.copilot/skills/` is preferred
+- Global (user-level): `~/.copilot/skills/`
+- Project-level: `.github/skills/` inside a repository
 
-### Installation Steps
+Examples:
 
-1. **Choose a location** based on your needs (global or project-specific)
-2. **Copy the skill folder** from this repository to your chosen location
-   ```bash
-   # Example: Install the readme skill globally
-   cp -r readme ~/.copilot/skills/readme
-   
-   # Example: Install the create-agents-md skill in a project
-   cp -r create-agents-md /path/to/your/project/.github/skills/create-agents-md
-   ```
-3. **Reload your IDE** or restart the GitHub Copilot CLI for the new skills to be detected
-4. GitHub Copilot will automatically load and use relevant skills based on your task context
+```bash
+# Install the readme skill globally
+cp -r readme ~/.copilot/skills/readme
 
-### Skill Structure
+# Install project-scoped skills
+cp -r create-agents-md /path/to/repo/.github/skills/create-agents-md
+```
 
-Each skill directory contains:
-- `SKILL.md` - Main skill definition with YAML frontmatter and instructions
-- Additional supporting files or scripts specific to that skill
+Reload your IDE or agent runtime so it rescans the skills directory.
 
-For more information, see the [GitHub Copilot Agent Skills documentation](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills).
+## References
 
-## Other public skills
+- [GitHub Copilot Agent Skills](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills)
+- [Visual Studio Agent Skills](https://code.visualstudio.com/docs/copilot/customization/agent-skills)
 - [humanizer](https://github.com/blader/humanizer)
+- [Matt Pocock Skills](https://github.com/mattpocock/skills)
+- [Matteo Collina Skills](https://github.com/mcollina/skills)

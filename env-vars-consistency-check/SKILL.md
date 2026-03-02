@@ -1,5 +1,5 @@
 ---
-name: envVarsConsistencyCheck
+name: env-vars-consistency-check
 title: Mandatory and Optional Environment Variables Consistency Check
 description: Validate consistency between application environment variable schema and Helm/Kubernetes configuration across multiple environments, resolving real values, detecting CI/Kubernetes secrets, and identifying code-level defaults.
 tags:

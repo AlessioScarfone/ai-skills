@@ -1,5 +1,5 @@
 ---
-name: readme
+name: update-readme
 description: Create or update README.md by analyzing the current state of the repository. Keep documentation accurate, concise, and aligned with the codebase.
 ---
 
@@ -69,7 +69,7 @@ Include only sections relevant to the project:
 - Requirements / Prerequisites
 - Installation
 - Usage
-- Project Structure (use folder tree, show only folder do no include single file)
+- Project Structure (use a folder tree; show folders and important files, but do not list every single file)
 - Configuration
 - Testing
 - Build / Deployment (if applicable)
