@@ -1,6 +1,7 @@
 ---
 name: create-ux
 description: Facilitate UX design sessions with structured brainstorming, design decision workshops, UX specification writing, and standalone HTML/CSS prototyping. Use when user asks to design a UI, create a UX prototype, brainstorm design decisions, review a design, build an HTML mockup, create a wireframe, or mentions "UX", "prototype", "wireframe", "design decisions", "UI design", "mockup".
+disable-model-invocation: true
 ---
 
 # Create UX
