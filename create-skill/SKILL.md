@@ -23,16 +23,29 @@ description: Create new agent skills with proper structure, progressive disclosu
    - Anything missing or unclear?
    - Should any section be more/less detailed?
 
-## Skill Structure
+# Skill Structure
 
 ```
 skill-name/
-├── SKILL.md           # Main instructions (required)
-├── REFERENCE.md       # Detailed docs (if needed)
-├── EXAMPLES.md        # Usage examples (if needed)
-└── scripts/           # Utility scripts (if needed)
-    └── helper.js
+├── SKILL.md          # Required: metadata + instructions
+├── scripts/          # Optional: executable code
+├── references/       # Optional: documentation
+├── assets/           # Optional: templates, resources
+└── ...               # Any additional files or directories
 ```
+
+## Frontmatter
+`name`: Max 64 characters. Lowercase letters, numbers, and hyphens only. Must not start or end with a hyphen.
+`description`: Max 1024 characters. Non-empty. Should describe both what the skill does and when to use it. Should include specific keywords that help agents identify relevant tasks.
+
+## Body content
+The Markdown body after the frontmatter contains the skill instructions. There are no format restrictions. Write whatever helps agents perform the task effectively.
+Recommended sections:
+- Step-by-step instructions
+- Examples of inputs and outputs
+- Common edge cases
+
+Note that the agent will load this entire file once it’s decided to activate a skill. Consider splitting longer SKILL.md content into referenced files.
 
 ## SKILL.md Template
 
