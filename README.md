@@ -6,7 +6,7 @@ A collection of small, focused "skills" (scripts, helpers, and configurations) d
 
 - **agent-md-refactor** — Refactors large AGENTS.md / CLAUDE.md files into smaller, progressive-disclosure docs.
 - **create-agents-md** — Generates hierarchical AGENTS.md structures for repositories and teams.
-- **create-skill** — Scaffolding utility to create a new skill with recommended files and metadata. => [Matt Pocock Skills](https://github.com/mattpocock/skills)
+- **generate-skill** — Scaffolding utility to create a new skill with recommended files and metadata.
 - **create-ux** — Facilitate UX design sessions with structured brainstorming, design decision workshops, specification writing, and standalone HTML/CSS prototyping.
 - **env-vars-consistency-check** — Compares application env var schemas with Helm/Kubernetes configs across environments.
 - **fastify** — Collection of Fastify-focused rules and helpers (security, plugins, testing, etc.) => from [Matteo Collina Skills](https://github.com/mcollina/skills)
