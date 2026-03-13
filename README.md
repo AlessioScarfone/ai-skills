@@ -4,25 +4,26 @@ A collection of small, focused "skills" (scripts, helpers, and configurations) d
 
 ## Available skills
 
-- **agent-md-refactor** — Refactors large AGENTS.md / CLAUDE.md files into smaller, progressive-disclosure docs.
-- **create-agents-md** — Generates hierarchical AGENTS.md structures for repositories and teams.
-- **generate-skill** — Scaffolding utility to create a new skill with recommended files and metadata.
-- **create-ux** — Facilitate UX design sessions with structured brainstorming, design decision workshops, specification writing, and standalone HTML/CSS prototyping.
-- **env-vars-consistency-check** — Compares application env var schemas with Helm/Kubernetes configs across environments.
-- **fastify** — Collection of Fastify-focused rules and helpers (security, plugins, testing, etc.) => from [Matteo Collina Skills](https://github.com/mcollina/skills)
-- **humanizer** — Utilities to make AI-generated text sound more natural and human. => from [humanizer](https://github.com/blader/humanizer)
-- **pr-descripton** — Templates and generators for standardized PR descriptions and checklists.
-- **pr-review** — Deterministic code-review helpers to surface regressions and missing tests.
-- **readme** — Creates or updates README.md by analyzing the repository and its files.
-- **typescript-magician** — Advanced TypeScript type utilities and rules guidance. => from [Matteo Collina Skills](https://github.com/mcollina/skills)
-- **tdd** — Test-driven development helpers (red-green-refactor loop). => from [Matt Pocock Skills](https://github.com/mattpocock/skills)
+- **agent-md-refactor** — Refactor bloated AGENTS.md / CLAUDE.md files into a progressive-disclosure hierarchy (splits monolithic instruction files into organized, linked documents).
+- **create-agents-md** — Generate hierarchical AGENTS.md structures optimized for AI agents (analyzes repo layout and creates root + per-package AGENTS.md files).
+- **create-ux** — Facilitate UX design: workshops, decision workshops, spec templates, and standalone HTML/CSS prototypes.
+- **env-vars-consistency-check** — Validate environment-variable schemas against Helm/CI/Kubernetes configs and report resolved values per environment.
+- **fastify-best-practices** — Comprehensive Fastify rules and examples (plugins, routes, schemas, testing, performance, deployment).
+- **generate-postman-collection** — Analyze a codebase and produce a Postman Collection v2.1 JSON with realistic examples and grouped endpoints.
+- **generate-skill** — Scaffolding helper to create new agent skills with proper frontmatter, templates, and recommended structure.
+- **humanizer** — Remove signs of AI-generated writing and rewrite text to sound more natural and human.
+- **pr-description** — Generate clear PR titles and structured descriptions from diffs and branch context (note: folder name `pr-descripton` contains this skill; see on-disk spelling).
+- **pr-review** — Deterministic, structured code review helper that identifies bugs, missing tests, and security or regression risks.
+- **tdd** — Test-driven development guidance (red → green → refactor) and test-writing checklists.
+- **typescript-magician** — Advanced TypeScript expertise: generics, conditional types, type inference, and eliminating `any`.
+- **update-readme** — Create or update a repository `README.md` by inspecting the codebase and aligning documentation with real commands and files.
 
-Each skill lives in a subfolder and includes a `SKILL.md` that documents its behavior and configuration.
+Each skill lives in a subfolder and includes a `SKILL.md` that documents its behavior and configuration. Use the `description` field in each `SKILL.md` as the primary summary when choosing a skill.
 
 ## Structure
 
 - `SKILL.md` — Primary skill definition and usage instructions.
-- Other files — scripts, rules, or support code for the skill.
+- Other files — scripts, rules, templates or support code for the skill.
 
 ## Installation
 
@@ -34,17 +35,16 @@ Choose one of the installation locations:
 Examples:
 
 ```bash
-# Install the readme skill globally
-cp -r readme ~/.copilot/skills/readme
+# Install a skill globally
+cp -r create-agents-md ~/.copilot/skills/create-agents-md
 
 # Install project-scoped skills
-cp -r create-agents-md /path/to/repo/.github/skills/create-agents-md
+cp -r generate-postman-collection /path/to/repo/.github/skills/generate-postman-collection
 ```
 
 Reload your IDE or agent runtime so it rescans the skills directory.
 
-## References
-
+## Notes & References
 - [GitHub Copilot Agent Skills](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills)
 - [Visual Studio Agent Skills](https://code.visualstudio.com/docs/copilot/customization/agent-skills)
 - [humanizer](https://github.com/blader/humanizer)
