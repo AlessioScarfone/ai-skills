@@ -1,6 +1,6 @@
 # AI Skills
 
-A collection of small, focused "skills" (scripts, helpers, and configurations) designed to be loaded by agent tooling such as GitHub Copilot or similar local agent runners.
+A collection of the AI "skills" I use on my workspace
 
 ## Available skills
 
