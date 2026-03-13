@@ -2,7 +2,6 @@
 project: "My Project"
 author: "Create UX Skill"
 date: "YYYY-MM-DD"
-sections_completed: []
 status: in-progress
 ---
 
@@ -41,13 +40,13 @@ status: in-progress
 
 | Decision | Choice Made | Rationale |
 |---|---|---|
-| Navigation pattern | | |
-| Content density | | |
-| Primary action placement | | |
-| Information hierarchy | | |
-| Color approach | | |
-| Form interaction pattern | | |
-| Feedback & states | | |
+| Navigation pattern | <!-- Top bar / Side nav / Bottom tabs / Hamburger --> | |
+| Content density | <!-- Spacious / Compact / Mixed --> | |
+| Primary action placement | <!-- FAB / Top-right / Bottom bar / Contextual inline --> | |
+| Information hierarchy | <!-- Single-focus / Dashboard overview / Progressive disclosure --> | |
+| Color approach | <!-- Neutral+accent / Brand-first / Dark mode / System-aware --> | |
+| Form interaction | <!-- Modal / Side panel / Inline / Separate page --> | |
+| Feedback & states | <!-- Toast / Inline validation / Status banners --> | |
 
 ---
 
@@ -96,7 +95,11 @@ status: in-progress
 ### Screen 2 — [Name]
 
 ```
-[wireframe]
+┌─────────────────────────────────────────┐
+│                                         │
+│  [Sketch the layout using ASCII art]    │
+│                                         │
+└─────────────────────────────────────────┘
 ```
 
 **Annotations:**
@@ -104,33 +107,48 @@ status: in-progress
 
 ---
 
-## Prototype Specification
+### [Screen 3 — Edge Case / Empty State / Error]
 
-<!-- Technical scope for the HTML prototype -->
+```
+┌─────────────────────────────────────────┐
+│                                         │
+│  [Sketch the layout using ASCII art]    │
+│                                         │
+└─────────────────────────────────────────┘
+```
 
-| Field | Value |
-|---|---|
-| Screens included | |
-| Interactions implemented | |
-| NOT included (out of scope) | |
-| Breakpoints | Desktop 1200px, Tablet 768px, Mobile 375px |
-| Color palette | |
-| Font | System font stack / [Font name] |
-| Spacing scale | 4px base unit (4, 8, 12, 16, 24, 32, 48, 64) |
-| Browser target | Modern browsers (Chrome, Firefox, Safari, Edge) |
-| Accessibility | ARIA labels, semantic HTML, keyboard nav on interactive elements |
+**Annotations:**
+- <!-- Key layout or interaction note -->
 
 ---
 
-## Prototype Interactions
+## Prototype Specification
+
+```
+**PROTOTYPE SPECIFICATION**
+
+<!-- Technical scope for the HTML prototype -->
+
+Screens included:     <!-- list the screens to build -->
+Interactions:         <!-- list clickable elements and what happens -->
+NOT included:         <!-- back-end, auth, real data — anything out of scope -->
+Breakpoints:          <!-- e.g., desktop 1200px, tablet 768px, mobile 375px -->
+Design tokens:
+  Colors:             <!-- hex codes for primary, secondary, background, text, error -->
+  Typography:         <!-- font family, sizes (base, h1, h2, small) -->
+  Spacing scale:      <!-- e.g., 4px / 8px / 16px / 24px / 32px / 48px -->
+Browser target:       Modern browsers (Chrome, Firefox, Safari, Edge)
+Accessibility:        ARIA labels, semantic HTML, keyboard navigation for nav
+
+**PROTOTYPE INTERACTIONS**
 
 <!-- What is clickable / interactive in the prototype -->
 
 | Element | Interaction | Result |
 |---|---|---|
-| | | |
+| |  |  |
 
----
+```
 
 ## Review Notes
 
@@ -150,3 +168,8 @@ status: in-progress
 
 **File:** `prototype-[project-name].html`
 **Status:** [ ] Not started / [ ] In progress / [ ] Complete
+
+**Interactions implemented:**
+- <!-- e.g., Side nav toggle on mobile -->
+- <!-- e.g., Tab switching in dashboard -->
+- <!-- e.g., Form validation on submit -->
