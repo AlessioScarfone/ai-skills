@@ -39,6 +39,7 @@ Follow these steps to generate a skill that adheres to the agentskills.io specif
 1.  Review the `SKILL.md` for "hallucination gaps" (points where the agent is forced to guess).
 2.  Verify all file paths are **relative** and use forward slashes (`/`).
 3.  Cross-reference the final output against `references/checklist.md`.
+4.  Delete unused subdirectories (`scripts/`, `references/`, `assets/`) if they remain empty after development.
 
 ## Error Handling
 *   **Metadata Failure:** If `scripts/validate-metadata.py` fails, identify the specific error (e.g., "STYLE ERROR") and rewrite the field to remove first/second person pronouns.

@@ -11,6 +11,7 @@ A collection of the AI "skills" I use on my workspace
 - **fastify-best-practices** — Comprehensive Fastify rules and examples (plugins, routes, schemas, testing, performance, deployment) -> from [Matteo Collina Skills](https://github.com/mcollina/skills)
 - **generate-postman-collection** — Analyze a codebase and produce a Postman Collection v2.1 JSON with realistic examples and grouped endpoints.
 - **skill-creator** — Scaffolding helper to create new agent skills with proper frontmatter, templates, and recommended structure. -> from [Minko Gechev Skills Best Practice](https://github.com/mgechev/skills-best-practices)
+- **skill-validator** — Audits an existing skill directory against the agentskills.io spec, checking metadata, file structure, instruction quality, and progressive disclosure. Generates a structured report with pass/fail findings and remediation steps.
 - **humanizer** — Remove signs of AI-generated writing and rewrite text to sound more natural and human -> from [humanizer](https://github.com/blader/humanizer)
 - **pr-description** — Generate clear PR titles and structured descriptions from diffs and branch context (note: folder name `pr-descripton` contains this skill; see on-disk spelling).
 - **pr-review** — Deterministic, structured code review helper that identifies bugs, missing tests, and security or regression risks.
